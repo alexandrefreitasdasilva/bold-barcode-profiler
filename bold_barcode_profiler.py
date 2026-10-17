@@ -80,7 +80,7 @@ def parse_arguments() -> argparse.Namespace:
         help="Disable automatic extraction of identified contig sequences into marker-specific FASTA files."
     )
     parser.add_argument(
-        "--remote-ncbi", action="store_true",
+        "--remote-ncbi", "--remote", "--remote-blastn", action="store_true", dest="remote_ncbi",
         help="Execute remote NCBI BLASTn against GenBank (db: nt) for the extracted marker contigs to cross-validate results."
     )
     parser.add_argument(

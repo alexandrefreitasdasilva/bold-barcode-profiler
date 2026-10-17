@@ -61,7 +61,7 @@ The pipeline automatically formats the database, performs local alignment using 
 - **Robust BOLD Handling:** Automatically parses and sanitizes multi-gigabyte BOLD TSV dumps without hitting memory limits or `makeblastdb` local ID length restrictions (avoiding header length bugs).
 - **Target Marker Filtering:** Easily restrict analysis to standard barcode markers like `COI-5P`, `COI`, `COII`, `16S`, `cytb`, or process all available markers.
 - **Marker-Specific FASTA Extraction:** Automatically isolates identified contigs into separate FASTA files grouped by marker gene (e.g. `_contigs_COI-5P.fasta`, `_contigs_18S-3P.fasta`), annotated with taxonomic assignments for downstream phylogenetics and alignments.
-- **NCBI Remote BLASTn Cross-Validation:** Optional one-command `-remote` BLASTn verification against GenBank (`nt`) producing side-by-side BOLD vs. NCBI comparison tables.
+- **NCBI Remote BLASTn Cross-Validation:** Optional one-command (`--remote-ncbi` or `--remote`) BLASTn verification against GenBank (`nt`) producing side-by-side BOLD vs. NCBI comparison tables.
 - **Dual Output Formats:** Produces standard TSV/CSV tables plus a **2-column layout** optimized for copying directly into Word documents and Google Docs reports.
 - **Publication Figures:** Generates multi-panel, publication-ready figures (PNG at 300 DPI and vector SVG) summarizing contig coverage, percent identity, bit score, and taxonomic assignments.
 
@@ -74,7 +74,7 @@ The pipeline automatically formats the database, performs local alignment using 
 Clone the repository and create the dedicated environment using the provided `environment.yml`:
 
 ```bash
-git clone https://github.com/<your-username>/bold-barcode-profiler.git
+git clone https://github.com/alexandrefreitasdasilva/bold-barcode-profiler.git
 cd bold-barcode-profiler
 
 # Create environment with Conda or Mamba
@@ -130,6 +130,18 @@ python3 bold_barcode_profiler.py \
     --threads 8
 ```
 
+### Cross-Validation with Remote NCBI BLASTn
+
+Optionally cross-validate identified marker contigs against GenBank's full `nt` database to produce a side-by-side BOLD vs. NCBI comparison table:
+
+```bash
+python3 bold_barcode_profiler.py \
+    --query /path/to/final.contigs.fasta \
+    --bold /path/to/culicidae_bold.tsv \
+    --outdir results_culicidae/ \
+    --remote-ncbi
+```
+
 ---
 
 ## 🧪 Testing with Example Data
@@ -172,7 +184,7 @@ The output tables and figures will be generated in `examples/example_results/`.
 | | `--skip-blast` | `flag` | `False` | Skip BLAST execution if raw BLAST results already exist in output dir. |
 | | `--no-plot` | `flag` | `False` | Disable automatic figure generation. |
 | | `--no-extract-fastas` | `flag` | `False` | Disable automatic extraction of marker-specific FASTA files. |
-| | `--remote-ncbi` | `flag` | `False` | Execute remote NCBI BLASTn against GenBank (`nt`) for extracted marker contigs. |
+| | `--remote-ncbi`, `--remote` | `flag` | `False` | Execute remote NCBI BLASTn against GenBank (`nt`) for extracted marker contigs. |
 | | `--ncbi-db` | `str` | `nt` | NCBI database for remote search (e.g., `nt`, `refseq_select_rna`). |
 | | `--ncbi-evalue` | `float` | `1e-5` | Maximum E-value threshold for remote NCBI BLASTn. |
 | | `--ncbi-max-target-seqs` | `int` | `5` | Maximum target sequences per query for remote NCBI BLASTn. |
