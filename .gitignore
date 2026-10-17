@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# BLAST databases and indices
+*.nhr
+*.nin
+*.nsq
+*.ndb
+*.not
+*.ntf
+*.nto
+bold_db*
+tmp*
+
+# Output results and scratch directories
+results/
+bold_results/
+example_results/
+examples/example_results/
+*.bam
+*.bai
+*.log
+*.err
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# OS and IDE files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

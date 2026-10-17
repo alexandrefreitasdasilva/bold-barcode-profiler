@@ -1,0 +1,13 @@
+name: bold-profiler
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.9
+  - blast>=2.12.0
+  - pandas>=2.0.0
+  - numpy>=1.24.0
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  - biopython>=1.80
